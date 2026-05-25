@@ -1,0 +1,299 @@
+/* ShapeIsland.css - Güncel Görsel Zenginlik */
+
+.shape-island {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #a0d8f1 0%, #7bc4e0 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+}
+
+/* Dalga Animasyonları */
+@keyframes wave1 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-20px) translateY(5px); }
+}
+
+@keyframes wave2 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(20px) translateY(-5px); }
+}
+
+@keyframes wave3 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-10px) translateY(8px); }
+}
+
+/* Bulut Animasyonu */
+@keyframes floatCloud {
+  0% { transform: translateX(-100%) translateY(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100%) translateY(-20px); opacity: 0; }
+}
+
+/* Işık Patlaması */
+@keyframes lightFlash {
+  0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8); transform: scale(1); }
+  50% { box-shadow: 0 0 0 30px rgba(255, 215, 0, 0); transform: scale(1.1); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); transform: scale(1); }
+}
+
+/* Yıldız Efekti */
+@keyframes starPop {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Şekil Sallanma */
+@keyframes shapeShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Puan Artış Animasyonu */
+@keyframes scorePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #feca57; }
+  100% { transform: scale(1); }
+}
+
+.score-pop {
+  animation: scorePop 0.3s ease-out;
+}
+
+/* Dalgalar */
+.wave-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 100% 100% 0 0;
+}
+
+.wave-1 { bottom: 0; height: 60px; background: rgba(255,255,255,0.2); animation: wave1 4s infinite ease-in-out; }
+.wave-2 { bottom: 20px; height: 50px; background: rgba(255,255,255,0.15); animation: wave2 5s infinite ease-in-out; }
+.wave-3 { bottom: 40px; height: 40px; background: rgba(255,255,255,0.1); animation: wave3 6s infinite ease-in-out; }
+
+/* Bulutlar */
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 100px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+.cloud::after { width: 35px; height: 35px; top: -15px; right: 15px; }
+
+.cloud-1 { width: 100px; height: 45px; top: 50px; left: -120px; animation: floatCloud 20s infinite linear; }
+.cloud-2 { width: 80px; height: 35px; top: 120px; left: -100px; animation: floatCloud 25s infinite linear 5s; }
+.cloud-3 { width: 120px; height: 55px; top: 80px; left: -140px; animation: floatCloud 18s infinite linear 10s; }
+
+/* Skor Tablosu */
+.score-board {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(135deg, #feca57 0%, #ff9f43 100%);
+  padding: 1rem 2.5rem;
+  border-radius: 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3436;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  margin: 1rem auto 2rem;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  text-align: center;
+}
+
+/* Nehir Bölümü */
+.river {
+  position: relative;
+  width: 85%;
+  max-width: 600px;
+  height: 180px;
+  background: linear-gradient(145deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 90px;
+  margin: 0 auto 3rem;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Yüzen Şekil */
+.floating-shape {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  cursor: grab;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 5;
+  margin: 40px auto;
+}
+
+.floating-shape:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.floating-shape.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.floating-shape.shake {
+  animation: shapeShake 0.3s ease-in-out;
+}
+
+/* Konteynırlar */
+.containers {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.container {
+  background: rgba(255,255,255,0.95);
+  border-radius: 30px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  min-width: 140px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border: 2px solid transparent;
+}
+
+.container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.container.correct-flash {
+  animation: lightFlash 0.5s ease-out;
+  border-color: #00ff88;
+  background: rgba(255,255,255,1);
+}
+
+.container-shape {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  border-radius: 25px;
+  transition: all 0.2s;
+}
+
+.container-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+/* Mesaj Bölümü */
+.message {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+/* Yıldız Efekti Konteynırı */
+.star-effect-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+}
+
+.star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: starPop 0.5s ease-out forwards;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Mobil Uyum */
+@media (max-width: 768px) {
+  .score-board {
+    font-size: 1.5rem;
+    padding: 0.7rem 1.8rem;
+  }
+  
+  .river {
+    height: 140px;
+  }
+  
+  .floating-shape {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+    margin-top: 35px;
+  }
+  
+  .container {
+    min-width: 100px;
+    padding: 1rem;
+  }
+  
+  .container-shape {
+    width: 55px;
+    height: 55px;
+    font-size: 1.8rem;
+  }
+  
+  .container-label {
+    font-size: 0.8rem;
+  }
+  
+  .message {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+    white-space: nowrap;
+  }
+}

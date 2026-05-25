@@ -1,0 +1,239 @@
+.emergency-room {
+  min-height: 100vh;
+  background: linear-gradient(145deg, #ee5a24 0%, #c0392b 100%);
+  padding: 1rem;
+  position: relative;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.score-board {
+  background: linear-gradient(135deg, #feca57 0%, #ff9f43 100%);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d3436;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.timer {
+  background: rgba(0,0,0,0.7);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+@keyframes scorePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #ff6b6b; }
+  100% { transform: scale(1); }
+}
+
+.score-pop {
+  animation: scorePop 0.3s ease-out;
+}
+
+.patient-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.patient-card {
+  background: white;
+  border-radius: 40px;
+  padding: 2rem 3rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.patient-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.patient-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2d3436;
+  margin-bottom: 0.5rem;
+}
+
+.patient-question {
+  font-size: 1.1rem;
+  color: #636e72;
+}
+
+.tools-area {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tools-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tool-card {
+  background: white;
+  border-radius: 30px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.tool-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.tool-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.message {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.game-over {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-over-content {
+  background: white;
+  border-radius: 50px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.game-over-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.game-over-content h2 {
+  font-size: 2rem;
+  color: #2d3436;
+  margin-bottom: 1rem;
+}
+
+.game-over-content p {
+  font-size: 1.2rem;
+  color: #636e72;
+  margin-bottom: 1.5rem;
+}
+
+.restart-button {
+  background: #ee5a24;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.restart-button:hover {
+  transform: scale(1.05);
+  background: #c0392b;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  color: white;
+}
+
+.star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: starPop 0.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes starPop {
+  0% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .score-board, .timer {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .patient-card {
+    padding: 1.5rem 2rem;
+  }
+  
+  .patient-icon {
+    font-size: 3.5rem;
+  }
+  
+  .patient-name {
+    font-size: 1.3rem;
+  }
+  
+  .tool-card {
+    min-width: 100px;
+    padding: 1rem;
+  }
+  
+  .tool-icon {
+    font-size: 2rem;
+  }
+  
+  .message {
+    font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
+    max-width: 90%;
+  }
+}
